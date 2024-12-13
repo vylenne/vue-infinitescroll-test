@@ -1,7 +1,16 @@
 <script setup lang="ts">
+/**
+ * @component RandomUserCard
+ * @desription View of random user data loaded by API-request
+ * In current implementation it's view of item in InfiniteScroller list
+ * @see InfiniteScroller
+ * */
 import {RandomUserEntity} from "@/components/InfiniteScroller/types";
 
 type RandomUserCardProps = {
+  /**
+   * Random user data item
+   * */
   item: RandomUserEntity
 }
 

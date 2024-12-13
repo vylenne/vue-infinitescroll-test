@@ -1,5 +1,11 @@
 <script setup lang="ts">
+/**
+ * @component PagingTriggerLimitView
+ * @description - View of trigger in case of reaching limit of loaded items
+ * @see PagingTrigger
+ * */
 type LimitViewProps = {
+  /** Limit value for showing it to user*/
   limitValue: number
 }
 const {limitValue} = defineProps<LimitViewProps>();

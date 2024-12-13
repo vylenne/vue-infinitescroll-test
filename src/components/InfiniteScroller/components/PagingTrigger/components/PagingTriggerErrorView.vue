@@ -1,5 +1,15 @@
 <script setup lang="ts">
+/**
+ * @component PagingTriggerErrorView
+ * @description - view of trigger in case of unsuccessful API-request
+ * It's possible to reload current page manually in PagingTriggerErrorView
+ * @see PagingTrigger
+ * */
 type ErrorViewProps = {
+  /**
+   * Function for manual reloading of current page
+   * It's used as click handler for Reload button
+   * */
   onReload: () => void
 }
 const {onReload} = defineProps<ErrorViewProps>()

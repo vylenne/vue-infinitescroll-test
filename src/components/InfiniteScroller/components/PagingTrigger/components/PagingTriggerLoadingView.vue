@@ -1,5 +1,9 @@
 <script setup lang="ts">
-
+/**
+ * @component PagingTriggerLoadingView
+ * @description - view of trigger in case of pending request
+ * @see PagingTrigger
+ * */
 </script>
 
 <template>
