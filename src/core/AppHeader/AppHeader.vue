@@ -20,6 +20,7 @@ export default {
   align-items: center;
   gap: 32px;
   padding: 12px;
-  background: green;
+  background: #006400;
+  color: white;
 }
 </style>

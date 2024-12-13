@@ -4,6 +4,7 @@ import { onMounted, ref} from "@vue/runtime-dom";
 import {onBeforeUnmount, useTemplateRef} from "vue";
 import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger/PagingTrigger.vue";
 import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/PagingTrigger/types";
+import RandomUserCard from "@/components/InfiniteScroller/components/RandomUserCard/RandomUserCard.vue";
 
 // in current implementation they are hardcoded
 const ITEMS_LIMIT_VALUE = 30;
@@ -53,7 +54,9 @@ onBeforeUnmount(() => {
 <template>
   <div class="infiniteScroller">
     <ul class="itemsListContainer">
-      <li v-for="item in items" :key="item.email">{{ item.name.first }}</li>
+      <li v-for="item in items" :key="item.email">
+        <random-user-card :item="item"/>
+      </li>
       <PagingTrigger
           ref="trigger"
           :current-list-length="items.length"
@@ -68,6 +71,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .infiniteScroller {
   flex-grow: 1;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
 }

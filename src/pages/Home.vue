@@ -16,8 +16,9 @@ export default {
 <style scoped>
 .homePage {
   width: 100%;
-  background: darkgray;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 </style>

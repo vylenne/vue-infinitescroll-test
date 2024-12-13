@@ -1,11 +1,15 @@
 export type RandomUserEntity = {
     gender: "female" | "male",
-    "name": {
-        "title": string,
-        "first": string,
-        "last": string,
+    name: {
+        title: string,
+        first: string,
+        last: string,
     },
-    "email": string,
+    email: string,
+    picture: {
+        large: string,
+    },
+    phone: string,
 }
 
 export type RandomUserApiData = {
