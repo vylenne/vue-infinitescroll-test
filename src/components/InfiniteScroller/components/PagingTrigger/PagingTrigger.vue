@@ -8,6 +8,8 @@ import PagingTriggerErrorView
   from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerErrorView.vue";
 import PagingTriggerLoadingView
   from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerLoadingView.vue";
+import PagingTriggerLimitView
+  from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerLimitView.vue";
 
 const {isTriggerActivated, currentListLength, limitValue, onPageLoad} = defineProps<PagingTriggerProps>();
 const rootElement = useTemplateRef<HTMLDivElement>('root')
@@ -83,6 +85,7 @@ watch<WatchSource<number>>(
 
 <template>
   <li ref="root">
+    <paging-trigger-limit-view v-if="isLimitReached" :limit-value="limitValue"/>
     <paging-trigger-loading-view v-if="isLoading"/>
     <paging-trigger-error-view v-if="isError" :on-reload="onReload"/>
   </li>

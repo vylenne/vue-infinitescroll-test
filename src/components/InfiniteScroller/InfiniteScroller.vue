@@ -5,6 +5,9 @@ import {onBeforeUnmount, useTemplateRef} from "vue";
 import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger/PagingTrigger.vue";
 import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/PagingTrigger/types";
 
+// in current implementation they are hardcoded
+const ITEMS_LIMIT_VALUE = 30;
+
 const items = ref<RandomUserEntity[]>([]);
 
 const onPageLoad = (newPage: RandomUserEntity[]) => {
@@ -56,7 +59,7 @@ onBeforeUnmount(() => {
           :current-list-length="items.length"
           :is-trigger-activated="isEndReached"
           :on-page-load="onPageLoad"
-          :limit-value="50"
+          :limit-value="ITEMS_LIMIT_VALUE"
       />
     </ul>
   </div>
