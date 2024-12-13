@@ -6,6 +6,8 @@ import axios from "axios";
 import {RandomUserApiData} from "@/components/InfiniteScroller/types";
 import PagingTriggerErrorView
   from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerErrorView.vue";
+import PagingTriggerLoadingView
+  from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerLoadingView.vue";
 
 const {isTriggerActivated, currentListLength, limitValue, onPageLoad} = defineProps<PagingTriggerProps>();
 const rootElement = useTemplateRef<HTMLDivElement>('root')
@@ -15,7 +17,7 @@ defineExpose<PagingTriggerExpose>({
 
 // view management
 const isLoading = ref<boolean>(false);
-const isError = ref<boolean>(true);
+const isError = ref<boolean>(false);
 const hasMore = ref<boolean>(true);
 const isLimitReached = ref<boolean>(currentListLength >= limitValue);
 
@@ -81,6 +83,7 @@ watch<WatchSource<number>>(
 
 <template>
   <li ref="root">
+    <paging-trigger-loading-view v-if="isLoading"/>
     <paging-trigger-error-view v-if="isError" :on-reload="onReload"/>
   </li>
 </template>
