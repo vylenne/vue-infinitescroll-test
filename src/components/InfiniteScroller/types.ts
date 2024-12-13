@@ -11,9 +11,3 @@ export type RandomUserEntity = {
 export type RandomUserApiData = {
     results: RandomUserEntity[]
 }
-
-export type InfiniteScrollerData = {
-    items: RandomUserEntity[],
-    errorMessage: string,
-    isLoading: boolean,
-}

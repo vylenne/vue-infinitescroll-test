@@ -1,41 +1,65 @@
-<script lang="ts">
-import axios from "axios";
-import {InfiniteScrollerData, RandomUserApiData} from "@/components/InfiniteScroller/types";
-export default {
-  name: "InfiniteScroller",
-  data(): InfiniteScrollerData {
-    return {
-      items: [],
-      errorMessage: "",
-      isLoading: false,
-    };
-  },
-  created() {
-    this.loadItems();
-  },
-  methods: {
-    async loadItems() {
-      this.isLoading = true;
-      try {
-        const response = await axios.get<RandomUserApiData>("https://randomuser.me/api/?results=100"); // Replace with your API URL
-        this.items = response.data.results;
-      } catch (error) {
-        this.errorMessage = "Failed to load items";
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
+<script setup lang="ts">
+import {RandomUserApiData} from "@/components/InfiniteScroller/types";
+import {defineComponent, onMounted, ref} from "@vue/runtime-dom";
+import {onBeforeUnmount, useTemplateRef} from "vue";
+import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger.vue";
+import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/types";
+
+defineComponent(() => ({PagingTrigger}))
+const items = ref<RandomUserApiData[]>([]);
+
+const onPageLoad = (newPage: RandomUserApiData[]) => {
+  // todo: delete
+  console.log("onPageLoad: ", newPage)
+  items.value = [...items.value, ...newPage];
 }
+
+const triggerElemRef = useTemplateRef<PagingTriggerExpose>('trigger');
+const isEndReached = ref(false);
+const observer = ref<IntersectionObserver | null>(null);
+const observe = (targetElem: HTMLElement) => {
+  if (observer.value || !targetElem) return;
+
+  const onIntersect = (entries: IntersectionObserverEntry[]) => {
+    if (entries[0]?.isIntersecting) {
+      isEndReached.value = true;
+    } else {
+      isEndReached.value = false;
+    }
+  };
+
+  observer.value = new IntersectionObserver(onIntersect, {
+    threshold: 0.1,
+  });
+
+  observer.value.observe(targetElem);
+};
+
+onMounted(() => {
+  if (triggerElemRef.value?.rootElement) {
+    observe(triggerElemRef.value?.rootElement);
+  } else {
+    console.error("InfiniteScroller: trigger element is null")
+  }
+})
+
+onBeforeUnmount(() => {
+  observer.value?.disconnect();
+})
 </script>
 
 <template>
   <div class="infiniteScroller">
-    <ul v-if="items.length" class="itemsListContainer">
+    <ul class="itemsListContainer">
       <li v-for="item in items" :key="item.email">{{ item.name.first }}</li>
+      <PagingTrigger
+          ref="trigger"
+          :current-list-length="items.length"
+          :is-trigger-activated="isEndReached"
+          :on-page-load="onPageLoad"
+          :limit-value="50"
+      />
     </ul>
-    <p v-else>Loading...</p>
-    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
 
