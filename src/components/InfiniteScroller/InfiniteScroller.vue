@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import {RandomUserApiData} from "@/components/InfiniteScroller/types";
-import {defineComponent, onMounted, ref} from "@vue/runtime-dom";
+import {RandomUserEntity} from "@/components/InfiniteScroller/types";
+import { onMounted, ref} from "@vue/runtime-dom";
 import {onBeforeUnmount, useTemplateRef} from "vue";
-import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger.vue";
-import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/types";
+import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger/PagingTrigger.vue";
+import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/PagingTrigger/types";
 
-defineComponent(() => ({PagingTrigger}))
-const items = ref<RandomUserApiData[]>([]);
+const items = ref<RandomUserEntity[]>([]);
 
-const onPageLoad = (newPage: RandomUserApiData[]) => {
+const onPageLoad = (newPage: RandomUserEntity[]) => {
   // todo: delete
   console.log("onPageLoad: ", newPage)
   items.value = [...items.value, ...newPage];

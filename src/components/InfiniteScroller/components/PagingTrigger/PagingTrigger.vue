@@ -4,6 +4,8 @@ import {onUpdated, useTemplateRef, watch} from "vue";
 import {ref, WatchSource} from "@vue/runtime-dom";
 import axios from "axios";
 import {RandomUserApiData} from "@/components/InfiniteScroller/types";
+import PagingTriggerErrorView
+  from "@/components/InfiniteScroller/components/PagingTrigger/components/PagingTriggerErrorView.vue";
 
 const {isTriggerActivated, currentListLength, limitValue, onPageLoad} = defineProps<PagingTriggerProps>();
 const rootElement = useTemplateRef<HTMLDivElement>('root')
@@ -13,9 +15,13 @@ defineExpose<PagingTriggerExpose>({
 
 // view management
 const isLoading = ref<boolean>(false);
-const isError = ref<boolean>(false);
+const isError = ref<boolean>(true);
 const hasMore = ref<boolean>(true);
 const isLimitReached = ref<boolean>(currentListLength >= limitValue);
+
+const onReload = () => {
+  isError.value = false;
+}
 
 const runApiRequest = async () => {
   // in current implementation they are hardcoded
@@ -74,9 +80,7 @@ watch<WatchSource<number>>(
 </script>
 
 <template>
-  <li ref="root">trigger</li>
+  <li ref="root">
+    <paging-trigger-error-view v-if="isError" :on-reload="onReload"/>
+  </li>
 </template>
-
-<style scoped>
-
-</style>
