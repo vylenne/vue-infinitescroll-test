@@ -21,7 +21,9 @@ const {onReload} = defineProps<ErrorViewProps>()
       <h3>Error occurs during loading!</h3>
       <div class="buttonPanel">
         <p>Please, retry loading</p>
-        <button @click="onReload">Reload</button>
+        <button @click="onReload">
+          Reload
+        </button>
       </div>
     </div>
   </div>

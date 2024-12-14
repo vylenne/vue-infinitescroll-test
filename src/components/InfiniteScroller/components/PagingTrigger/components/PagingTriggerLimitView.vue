@@ -13,7 +13,7 @@ const {limitValue} = defineProps<LimitViewProps>();
 
 <template>
   <div class="pagingTriggerLimitView">
-    <h3>Limit is reached! {{limitValue}}</h3>
+    <h3>Limit is reached! {{ limitValue }}</h3>
   </div>
 </template>
 

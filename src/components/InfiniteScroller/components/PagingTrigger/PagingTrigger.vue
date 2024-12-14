@@ -8,7 +8,7 @@
  * */
 import {PagingTriggerExpose, PagingTriggerProps} from "./types";
 import {onUpdated, useTemplateRef, watch} from "vue";
-import {ref} from "@vue/runtime-dom";
+import {ref} from "vue";
 import axios from "axios";
 import {RandomUserApiData} from "@/components/InfiniteScroller/types";
 import PagingTriggerErrorView
@@ -146,8 +146,14 @@ watch(
 
 <template>
   <li ref="root">
-    <paging-trigger-limit-view v-if="isLimitReached" :limit-value="limitValue"/>
-    <paging-trigger-loading-view v-if="isLoading"/>
-    <paging-trigger-error-view v-if="isError" :on-reload="onReload"/>
+    <paging-trigger-limit-view
+      v-if="isLimitReached"
+      :limit-value="limitValue"
+    />
+    <paging-trigger-loading-view v-if="isLoading" />
+    <paging-trigger-error-view
+      v-if="isError"
+      :on-reload="onReload"
+    />
   </li>
 </template>

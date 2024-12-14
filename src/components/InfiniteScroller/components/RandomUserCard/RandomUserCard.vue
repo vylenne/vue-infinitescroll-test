@@ -5,27 +5,28 @@
  * In current implementation it's view of item in InfiniteScroller list
  * @see InfiniteScroller
  * */
-import {RandomUserEntity} from "@/components/InfiniteScroller/types";
-
-type RandomUserCardProps = {
-  /**
-   * Random user data item
-   * */
-  item: RandomUserEntity
-}
+import { RandomUserCardProps } from "./types";
 
 const {item} = defineProps<RandomUserCardProps>();
 </script>
 
 <template>
-<div class="userCard">
-  <img class="rounded-image" :src="item.picture.large" alt="{{item.name}} photo" />
-  <div class="userInfo">
-    <h4 class="limitedTextLine">{{`${item.name.first} ${item.name.last}`}}</h4>
-    <p class="limitedTextLine">{{item.email}}</p>
-    <p>{{item.phone}}</p>
+  <div class="userCard">
+    <img
+      class="rounded-image"
+      :src="item.picture.large"
+      alt="{{item.name}} photo"
+    >
+    <div class="userInfo">
+      <h4 class="limitedTextLine">
+        {{ `${item.name.first} ${item.name.last}` }}
+      </h4>
+      <p class="limitedTextLine">
+        {{ item.email }}
+      </p>
+      <p>{{ item.phone }}</p>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped>

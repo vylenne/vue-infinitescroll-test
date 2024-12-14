@@ -9,7 +9,7 @@ export default {
 
 <template>
   <div class="header">
-    <HomeIconLink/>
+    <HomeIconLink />
     <h1>Vue 3 Infinite Scroll</h1>
   </div>
 </template>

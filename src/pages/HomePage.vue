@@ -1,14 +1,14 @@
 <template>
   <div class="homePage">
     <h2>Random Users</h2>
-    <InfiniteScroller/>
+    <InfiniteScroller />
   </div>
 </template>
 
 <script lang="ts">
 import InfiniteScroller from "@/components/InfiniteScroller/InfiniteScroller.vue";
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {InfiniteScroller},
 };
 </script>

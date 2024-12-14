@@ -4,7 +4,7 @@
  * @description This component contains logic of displaying infinite scrolled list of items with page loading by reaching the end of the current item list.
  */
 import {RandomUserEntity} from "@/components/InfiniteScroller/types";
-import { onMounted, ref} from "@vue/runtime-dom";
+import { onMounted, ref} from "vue";
 import {onBeforeUnmount, useTemplateRef} from "vue";
 import PagingTrigger from "@/components/InfiniteScroller/components/PagingTrigger/PagingTrigger.vue";
 import {PagingTriggerExpose} from "@/components/InfiniteScroller/components/PagingTrigger/types";
@@ -94,15 +94,18 @@ onBeforeUnmount(() => {
 <template>
   <div class="infiniteScroller">
     <ul class="itemsListContainer">
-      <li v-for="item in items" :key="item.email">
-        <random-user-card :item="item"/>
+      <li
+        v-for="item in items"
+        :key="item.email"
+      >
+        <random-user-card :item="item" />
       </li>
       <paging-trigger
-          ref="trigger"
-          :current-list-length="items.length"
-          :is-trigger-activated="isEndOfListReached"
-          :on-page-load="onPageLoad"
-          :limit-value="ITEMS_LIMIT_VALUE"
+        ref="trigger"
+        :current-list-length="items.length"
+        :is-trigger-activated="isEndOfListReached"
+        :on-page-load="onPageLoad"
+        :limit-value="ITEMS_LIMIT_VALUE"
       />
     </ul>
   </div>
