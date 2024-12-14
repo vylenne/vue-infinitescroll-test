@@ -19,7 +19,7 @@ Simple SPA application demonstrates library-free Infinite Scroller for rendering
 Application will be available by `http://localhost:5173/`
 - Prod build
   - `npm ci`
-  - `npm build`
+  - `npm run build`
   - `docker build -t frontend-app .`
   - `docker run -d -p 80:80 frontend-app`
 
@@ -67,4 +67,3 @@ Application will be available by `http://localhost`
 - "404 Not found" page is implemented to let user know that there is no available routes except the root
 - Link "Go to Home" is implemented in 404 page. It leads to the root
 - The same functionality is implemented in AppHeader by clicking Home button in the top-left corner
-
